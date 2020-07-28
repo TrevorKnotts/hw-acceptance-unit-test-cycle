@@ -53,6 +53,11 @@ class MoviesController < ApplicationController
     flash[:notice] = "#{@movie.title} was successfully updated."
     redirect_to movie_path(@movie)
   end
+  
+  def same_director
+    @movie = Movie.find params[:id]
+    
+  end
 
   def destroy
     @movie = Movie.find(params[:id])

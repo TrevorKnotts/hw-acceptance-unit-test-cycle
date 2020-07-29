@@ -56,7 +56,8 @@ class MoviesController < ApplicationController
   
   def same_director
     @movie = Movie.find params[:id]
-    @movies = Movie.find_by(:directors @movie.directors)
+    @movies = Movie.where(director: @movie.director)
+   # @movies = Movie.find_by(:directors @movie.directors)
   end
 
   def destroy

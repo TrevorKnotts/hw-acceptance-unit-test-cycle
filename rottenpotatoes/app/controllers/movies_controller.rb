@@ -58,7 +58,8 @@ class MoviesController < ApplicationController
     @movie = Movie.find params[:id]
     @movies_unfiltered = Movie.where(director: @movie.director)
     @movies = @movies_unfiltered.select {|x| x.id != @movie.id }
-    redirect_to root_path and flash[:warning] = "'#{@movie.title}' has no director info" unless @movies.any? end
+    redirect_to root_path and flash[:warning] = "'#{@movie.title}' has no director info" unless @movies.any?
+  end
 
 
   def destroy

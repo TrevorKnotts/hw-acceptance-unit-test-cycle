@@ -56,9 +56,10 @@ class MoviesController < ApplicationController
   
   def same_director
     @movie = Movie.find params[:id]
-    @movies = Movie.where(director: @movie.director)
-   # @movies = Movie.find_by(:directors @movie.directors)
-  end
+    @movies_unfiltered = Movie.where(director: @movie.director)
+    @movies = @movies_unfiltered.select {|x| x.id != @movie.id }
+    redirect_to root_path and flash[:warning] = "'#{@movie.title}' has no director info" unless @movies.any? end
+
 
   def destroy
     @movie = Movie.find(params[:id])
